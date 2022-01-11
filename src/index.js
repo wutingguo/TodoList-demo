@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Component } from 'react'
+import reactDom from 'react-dom'
+import TodosFooter from './TodosFooter'
+import TodosHeader from './TodosHeader'
+import TodosMain from './TodosMain'
+import './css/base.css'
+import './css/index.css'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export default class Father extends Component {
+  state = {
+    list: [
+      { id: 1, name: '吃饭', flag: false },
+      { id: 2, name: '睡觉', flag: false },
+      { id: 3, name: '打豆豆', flag: true },
+    ],
+  }
+  render() {
+    return (
+      <>
+        <section className="todoapp">
+          <TodosHeader></TodosHeader>
+          <TodosMain list={this.state.list}></TodosMain>
+          <TodosFooter></TodosFooter>
+        </section>
+      </>
+    )
+  }
+}
+reactDom.render(<Father></Father>, document.querySelector('#root'))
